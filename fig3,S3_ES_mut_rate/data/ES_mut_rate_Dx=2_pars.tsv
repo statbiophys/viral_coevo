@@ -1,0 +1,8 @@
+#parameter	value
+lambda	125.0
+beta	2
+alpha	0
+gamma	1
+Nh	10000000000
+M	5
+cutoff	1

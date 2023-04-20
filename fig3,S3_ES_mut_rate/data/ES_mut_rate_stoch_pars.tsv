@@ -1,0 +1,8 @@
+#parameter	value
+lambda	1000
+beta	2
+alpha	0
+gamma	1
+Nh	1000000000000
+M	5
+stoch_cutoff	10000
