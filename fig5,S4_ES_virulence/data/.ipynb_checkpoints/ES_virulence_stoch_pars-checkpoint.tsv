@@ -1,0 +1,7 @@
+#parameter	value
+D	1e-05
+b	2
+gamma	0.5
+Nh	1000000000000
+M	5
+stoch_cutoff	100000
