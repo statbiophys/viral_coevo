@@ -1,0 +1,7 @@
+#parameter	value
+D	0.002
+beta	0.12
+alpha	0.0
+Nh	10000000000
+M	5
+cutoff	1

@@ -1,6 +1,6 @@
 #parameter	value
-D	5e-06
-beta	2
+D	0.002
+beta	0.12
 alpha	0.0
 Nh	10000000000
 M	5
