@@ -17,21 +17,22 @@ class Vwave_virulence_pars(w.Vwave_pars) :
         self.n_alpha_bins = n_alpha_bins
         self.eps = eps
         self.global_cutoff = global_cutoff
-        
-        if type(alphas) != list or type(alphas) != np.ndarray:
+
+        if type(alphas) != list and type(alphas) != np.ndarray:
             self.alphas = np.linspace(0.15, 1.5, n_alpha_bins)
         else:
             self.alphas = alphas
+            n_alpha_bins = len(alphas)
             
         if alpha0_i == None:
             self.alpha0_i = int(n_alpha_bins/2)
         else:
             self.alpha0_i = alpha0_i
-            
+        
         self.dalpha = np.mean(np.diff(self.alphas))    
         self.alpha = self.alphas[self.alpha0_i] # It will be only used by Vwave to init vtau
         self.alpha_neighs = ut.init_neighs((self.n_alpha_bins,), boundary=False).astype(np.int64)
-        
+
         
 class Traj_virulence(w.Traj):
 
@@ -89,7 +90,11 @@ class Vwave_virulence(w.Vwave) :
     def _step(self, t):
         
         if t*self.p.dt > self.p.t_burn:
-            self.eps = self.p.eps
+            if type(self.p.eps) == float:
+                self.eps = self.p.eps
+            else:
+                # epsilon can be scheduled in time
+                self.eps = self.p.eps.get(t*self.p.dt - self.p.t_burn)
         w.Vwave._step(self, t)
         
         
